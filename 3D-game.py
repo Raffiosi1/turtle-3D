@@ -1,5 +1,6 @@
 #Welcome to 3D-game!!
 #Move around with W A S D
+#Look around with left/right arrows
 #Press "k" to stop
 
 import time
@@ -139,9 +140,9 @@ while True:
     turtle.color(r, g, b)
 
     #Rotation
-    if keyboard.is_pressed("a"):
+    if keyboard.is_pressed("left_arrow"):
         playerHeading -= 5
-    if keyboard.is_pressed("d"):
+    if keyboard.is_pressed("right_arrow"):
         playerHeading += 5
     
     if playerHeading > 180:
@@ -178,6 +179,36 @@ while True:
         elif -90 < playerHeading <= 0:
             desiredPlayerY = math.sin(math.radians(90 - abs(playerHeading))) * s
             desiredPlayerX = math.cos(math.radians(90 - abs(playerHeading))) * s
+        playerX += CollisionDetX(desiredPlayerX, desiredPlayerY)
+        playerY += CollisionDetY(desiredPlayerX, desiredPlayerY)
+    if keyboard.is_pressed("a"):
+        if 0 < playerHeading - 90 <= 90:
+            desiredPlayerY = -math.sin(math.radians(90 - abs(playerHeading - 90))) * s
+            desiredPlayerX = math.cos(math.radians(90 - abs(playerHeading - 90))) * s
+        elif 90 < playerHeading - 90 <= 180:
+            desiredPlayerY = math.cos(math.radians(180 - abs(playerHeading - 90))) * s
+            desiredPlayerX = math.sin(math.radians(180 - abs(playerHeading - 90))) * s
+        elif -180 < playerHeading - 90 <= -90:
+            desiredPlayerY = math.cos(math.radians(180 - abs(playerHeading - 90))) * s
+            desiredPlayerX = -math.sin(math.radians(180 - abs(playerHeading - 90))) * s
+        elif -90 < playerHeading - 90 <= 0:
+            desiredPlayerY = -math.sin(math.radians(90 - abs(playerHeading - 90))) * s
+            desiredPlayerX = -math.cos(math.radians(90 - abs(playerHeading - 90))) * s
+        playerX += CollisionDetX(desiredPlayerX, desiredPlayerY)
+        playerY += CollisionDetY(desiredPlayerX, desiredPlayerY)
+    elif keyboard.is_pressed("d"):
+        if 0 < playerHeading + 90 <= 90:
+            desiredPlayerY = -math.sin(math.radians(90 - abs(playerHeading + 90))) * s
+            desiredPlayerX = math.cos(math.radians(90 - abs(playerHeading + 90))) * s
+        elif 90 < playerHeading + 90 <= 180:
+            desiredPlayerY = math.cos(math.radians(180 - abs(playerHeading + 90))) * s
+            desiredPlayerX = math.sin(math.radians(180 - abs(playerHeading + 90))) * s
+        elif -180 < playerHeading + 90 <= -90:
+            desiredPlayerY = math.cos(math.radians(180 - abs(playerHeading + 90))) * s
+            desiredPlayerX = -math.sin(math.radians(180 - abs(playerHeading + 90))) * s
+        elif -90 < playerHeading + 90 <= 0:
+            desiredPlayerY = -math.sin(math.radians(90 - abs(playerHeading + 90))) * s
+            desiredPlayerX = -math.cos(math.radians(90 - abs(playerHeading + 90))) * s
         playerX += CollisionDetX(desiredPlayerX, desiredPlayerY)
         playerY += CollisionDetY(desiredPlayerX, desiredPlayerY)
 
