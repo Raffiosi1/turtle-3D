@@ -201,5 +201,3 @@ while True:
         DrawLine(dis_index, dis)
     turtle.update()
     time.sleep(0.05)
-
-#Commit test
