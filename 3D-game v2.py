@@ -25,6 +25,7 @@ numRays = screenW//10
 
 
 pygame.init()
+pygame.display.set_caption('3D game')
 screen = pygame.display.set_mode((screenW, screenH))
 clock = pygame.time.Clock()
 
